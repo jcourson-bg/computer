@@ -1,8 +1,21 @@
 packages:
   - "apps/*"
   - "packages/*"
+  - agents/*
 
 allowBuilds:
   sharp: true
   unrs-resolver: true
   msw: false
+
+minimumReleaseAgeExclude:
+  - "@ai-sdk/*"
+  - "@rolldown/*"
+  - "@vercel/*"
+  - "@workflow/*"
+  - ai
+  - experimental-ai-sdk-code-mode
+  - eve
+  - nitro
+  - rolldown
+  - workflow

@@ -1,0 +1,29 @@
+{
+  "name": "@workspace/agent-client",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "description": "Shared connectivity layer between apps and eve agents in this workspace.",
+  "scripts": {
+    "lint": "eslint",
+    "format": "prettier --write \"**/*.{ts,tsx}\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./react": "./src/react.ts",
+    "./server": "./src/server.ts"
+  },
+  "dependencies": {
+    "eve": "^0.19.0",
+    "react": "19.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@workspace/eslint-config": "workspace:*",
+    "@workspace/typescript-config": "workspace:*",
+    "eslint": "^9",
+    "typescript": "^5"
+  }
+}

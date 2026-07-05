@@ -1,19 +1,48 @@
-import { Button } from "@workspace/ui/components/button"
+import Link from "next/link"
+import { BotIcon, ChevronRightIcon } from "lucide-react"
+
+import { listAgents } from "@workspace/agent-client"
+import {
+  Item,
+  ItemContent,
+  ItemDescription,
+  ItemGroup,
+  ItemMedia,
+  ItemActions,
+  ItemTitle,
+} from "@workspace/ui/components/item"
 
 export default function Page() {
+  const agents = listAgents()
+
   return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <div>
-          <h1 className="font-medium">Project ready!</h1>
-          <p>You may now add components and start building.</p>
-          <p>We&apos;ve already added the button component for you.</p>
-          <Button className="mt-2">Button</Button>
-        </div>
-        <div className="text-muted-foreground font-mono text-xs">
-          (Press <kbd>d</kbd> to toggle dark mode)
-        </div>
-      </div>
-    </div>
+    <main className="mx-auto flex min-h-svh w-full max-w-2xl flex-col gap-8 p-6 pt-16">
+      <header className="flex flex-col gap-1">
+        <h1 className="text-lg font-semibold">Agents</h1>
+        <p className="text-muted-foreground text-sm">
+          Every agent in this workspace, available to chat.
+        </p>
+      </header>
+      <ItemGroup>
+        {agents.map((agent) => (
+          <Item
+            key={agent.id}
+            variant="outline"
+            render={<Link href={`/agents/${agent.id}`} />}
+          >
+            <ItemMedia variant="icon">
+              <BotIcon />
+            </ItemMedia>
+            <ItemContent>
+              <ItemTitle>{agent.name}</ItemTitle>
+              <ItemDescription>{agent.description}</ItemDescription>
+            </ItemContent>
+            <ItemActions>
+              <ChevronRightIcon className="text-muted-foreground size-4" />
+            </ItemActions>
+          </Item>
+        ))}
+      </ItemGroup>
+    </main>
   )
 }
